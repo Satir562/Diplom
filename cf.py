@@ -1,6 +1,6 @@
-bot_token = 'vk1.a.8pNaCq7wuHdpQ_Let6rz0lkjYAbFROkA5mYozqV7bATdESoHn1NSOYfZykoMtGMDDTa6Wp6YJ5-ogsGlv2sg-mNkN911h7nZ1cQBjdencmyFVWlNBOUO6DcmxBaPSRqqAdn-GQrcgJVLPnXM6dtNeyzDH6KBM-RgsQCJnxXzkZKSADsxrn8e0S1LXt0491AZM8dL9B6brMsgiGwlBZygXg'
+bot_token = ''
  # токен пользователя
-acces_token = 'vk1.a.KjV6_05QuSzkPVBN2ZV-O3c7mXhOW4IpBGA3cZIerGyhb5F7V0Al1Ln2_hnl-FdRBbv9Q1X2HPRDDnYneq-OURmYwe9r6yqCc0gYCH67dyInXkPMVsvShz6F8k7_GkrUed-QMSWi2KUuxtByXOP9t0hNUlmnZ_rGAdnRG51P3sF1Wlsbk500TOFGweaWJe4aVFotJYTwtLQfwt0njIJRkA'
+acces_token = ''
 # токен сообщества
 
 base="bd_bot"
