@@ -139,7 +139,7 @@ def get_additional_information(user_info):
         return user_info
 
 
-def get_users_list(user_info, offset=None):
+def get_users_list(user_info):
     if user_info['age'] - 3 < 18:
         start_find_age = 18
     else:
@@ -155,8 +155,7 @@ def get_users_list(user_info, offset=None):
             'city': user_info['city'],
             'status': 6,
             'has_photo': 1,
-            'count': 10,
-            'offset':offset,
+            'count': 100,
             'v': 5.131,})
     except vk_api.exceptions.VkApiError as _vae:
         print('get_users_list', _vae, type(_vae))
@@ -183,7 +182,7 @@ def get_photos(selected_user):
         response = vk_app_token.method('photos.get', {'owner_id': selected_user['id'],
                                                       'album_id': f'profile',
                                                       'photo_sizes': 1,
-                                                      'count': 10,
+                                                      'count': 100,
                                                       'extended': 1})
     except vk_api.exceptions.VkApiError as _vae:
         print('get_photos', _vae, type(_vae))
