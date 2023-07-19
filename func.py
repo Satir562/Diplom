@@ -155,7 +155,7 @@ def get_users_list(user_info):
             'city': user_info['city'],
             'status': 6,
             'has_photo': 1,
-            'count': 100,
+            'count': 1000,
             'v': 5.131,})
     except vk_api.exceptions.VkApiError as _vae:
         print('get_users_list', _vae, type(_vae))
@@ -182,7 +182,7 @@ def get_photos(selected_user):
         response = vk_app_token.method('photos.get', {'owner_id': selected_user['id'],
                                                       'album_id': f'profile',
                                                       'photo_sizes': 1,
-                                                      'count': 100,
+                                                      'count': 1000,
                                                       'extended': 1})
     except vk_api.exceptions.VkApiError as _vae:
         print('get_photos', _vae, type(_vae))
