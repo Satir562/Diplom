@@ -14,6 +14,8 @@ vk_app_token = vk_api.VkApi(token=acces_token)
 long_poll = VkLongPoll(vk_bot_token)
 vk = vk_bot_token.get_api()
 
+offset = 0
+
 
 class msg_sender:
     def __init__(self, user_id, message):
@@ -140,6 +142,11 @@ def get_additional_information(user_info):
 
 
 def get_users_list(user_info):
+    global offset
+
+    if offset > 900:
+        offset = 0
+
     if user_info['age'] - 3 < 18:
         start_find_age = 18
     else:
@@ -155,8 +162,10 @@ def get_users_list(user_info):
             'city': user_info['city'],
             'status': 6,
             'has_photo': 1,
-            'count': 1000,
-            'v': 5.131,})
+            'count': 50,
+            'offset': offset,
+            'v': 5.131, })
+
     except vk_api.exceptions.VkApiError as _vae:
         print('get_users_list', _vae, type(_vae))
         return False
@@ -166,6 +175,7 @@ def get_users_list(user_info):
 
     if response.get('count') != 0:
         if response.get('items'):
+            offset += 100
             for items in response.get('items'):
                 if items['is_closed']:
                     continue
@@ -309,7 +319,6 @@ def interface():
                 else:
                     msg = msg_sender(event.user_id, "msg_sender")
                     sender(event.user_id, "Воспользуйтесь интерфейсом", keyboard)
-
 
 
 if __name__ == '__main__':
