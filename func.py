@@ -147,8 +147,6 @@ def get_users_list(user_info, count):
 
     offset += count
 
-    print(offset)
-
     if offset > 500:
         offset = 0
 
