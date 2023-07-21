@@ -141,10 +141,15 @@ def get_additional_information(user_info):
         return user_info
 
 
-def get_users_list(user_info):
+def get_users_list(user_info, count):
     global offset
+    gotten_count = 0
 
-    if offset > 900:
+    offset += count
+
+    print(offset)
+
+    if offset > 500:
         offset = 0
 
     if user_info['age'] - 3 < 18:
@@ -162,7 +167,7 @@ def get_users_list(user_info):
             'city': user_info['city'],
             'status': 6,
             'has_photo': 1,
-            'count': 50,
+            'count': count,
             'offset': offset,
             'v': 5.131, })
 
@@ -175,12 +180,16 @@ def get_users_list(user_info):
 
     if response.get('count') != 0:
         if response.get('items'):
-            offset += 100
             for items in response.get('items'):
                 if items['is_closed']:
                     continue
                 else:
+                    gotten_count += 1
                     user_list.append(items)
+
+            if gotten_count != count:
+                user_list += get_users_list(user_info, count - gotten_count)
+
             return user_list
     else:
         return False
@@ -274,7 +283,7 @@ def interface():
                     if user_db_id is False:
                         user_db_id = insert_user(conn, user_info)
 
-                    users_list = get_users_list(user_info)
+                    users_list = get_users_list(user_info,100)
                     status = True
                     last_user = users_list[-1]
 
